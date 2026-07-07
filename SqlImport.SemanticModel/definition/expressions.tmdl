@@ -1,0 +1,31 @@
+expression RangeStart = #datetime(2009, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 894700e4-6076-492c-b3c2-2ab989be2316
+	queryGroup: MyFunction
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = DateTime
+
+expression RangeEnd = #datetime(2022, 12, 31, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 145067d6-e6df-447c-8a77-dd13b7ff3de5
+	queryGroup: MyFunction
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = DateTime
+
+expression MyFunction =
+		let
+		    Source = (RangeStart as datetime, RangeEnd as datetime) => let
+		    Source = Sql.Databases("modelingsql.database.windows.net"),
+		    AdventureWorksLT = Source{[Name="AdventureWorksLT"]}[Data],
+		    SalesLT_SalesOrderDetail = AdventureWorksLT{[Schema="SalesLT",Item="SalesOrderDetail"]}[Data],
+		    #"Removed Columns" = Table.RemoveColumns(SalesLT_SalesOrderDetail,{"LineTotal"}),
+		    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each [ModifiedDate] > RangeStart and [ModifiedDate] <= RangeEnd)
+		in
+		    #"Filtered Rows"
+		in
+		    Source
+	lineageTag: 24fe5edb-84e4-4ade-919c-1820c2b5e7fb
+	queryGroup: MyFunction
+

@@ -1,0 +1,95 @@
+table 'SalesLT Address.test.1'
+	lineageTag: 85797558-7c39-491c-8754-ad00eab59e18
+
+	column AddressID
+		dataType: int64
+		formatString: 0
+		lineageTag: f307bab3-a3e8-40dc-a6d8-02f6daaa8de0
+		summarizeBy: none
+		sourceColumn: AddressID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		lineageTag: 595df5bd-6b4d-4c49-b758-6aa21402fcfa
+		dataCategory: Barcode
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine2
+		dataType: string
+		lineageTag: ad9b3cfd-bdb7-4d93-a599-896e2923a25c
+		summarizeBy: none
+		sourceColumn: AddressLine2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: eb1c6cba-7718-4680-9adc-7a7e1d2c7423
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvince
+		dataType: string
+		lineageTag: 7c1acb10-c219-41c8-bd52-6c56855d7c0f
+		summarizeBy: none
+		sourceColumn: StateProvince
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRegion
+		dataType: string
+		lineageTag: 42a1fdcc-7d76-41e5-8686-737c3f77dc32
+		summarizeBy: none
+		sourceColumn: CountryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: 5dbe27ef-dc89-4681-be8e-23e25aa1ca6e
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 73dc6f3b-7cd1-456b-aece-c1f93bee2e3c
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f04aa20d-8d79-4d1c-9bfe-5eda03f1a10a
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 510619c7-6aef-4d18-942e-84a4e8ac9fe9
+			defaultHierarchy: LocalDateTable_6ec3b63e-6632-4989-a7ec-457b4a04e395.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT Address.test.1' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("modelingsql.database.windows.net"),
+				    AdventureWorksLT = Source{[Name="AdventureWorksLT"]}[Data],
+				    SalesLT_Address = AdventureWorksLT{[Schema="SalesLT",Item="Address"]}[Data]
+				in
+				    SalesLT_Address
+
+	annotation PBI_ResultType = Table
+

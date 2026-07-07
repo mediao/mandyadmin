@@ -1,0 +1,62 @@
+table 'SalesLT ProductModel'
+	lineageTag: 093d9185-0836-41cb-a758-08c6c322a37d
+
+	column ProductModelID
+		dataType: int64
+		formatString: 0
+		lineageTag: a5647823-00b0-41c2-a157-d78fa808609d
+		summarizeBy: none
+		sourceColumn: ProductModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: c10114f8-980c-4fd6-8e9e-071ea6d3a3f6
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column CatalogDescription
+		dataType: string
+		lineageTag: ac892891-927c-4a42-9c56-986f9ebdac51
+		summarizeBy: none
+		sourceColumn: CatalogDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: bfd0ce52-c196-4a3c-9af9-b08f476eeaf4
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d7bfff60-31e8-4b01-aed5-37c77b145101
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 33a7ea38-cbea-4665-8eb4-a0b9447e8db9
+			defaultHierarchy: LocalDateTable_87b72db9-f4e4-44ed-bb81-2ecca8c19740.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT ProductModel' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("modelingsql.database.windows.net"),
+				    AdventureWorksLT = Source{[Name="AdventureWorksLT"]}[Data],
+				    SalesLT_ProductModel = AdventureWorksLT{[Schema="SalesLT",Item="ProductModel"]}[Data]
+				in
+				    SalesLT_ProductModel
+
+	annotation PBI_ResultType = Table
+

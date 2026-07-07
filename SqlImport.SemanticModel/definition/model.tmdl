@@ -1,0 +1,45 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	maxParallelismPerRefresh: 7
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup MyFunction
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["SalesLT SalesOrderDetail","SalesLT Product","SalesLT SalesOrderHeader","SalesLT ProductModel","SalesLT Address.test.1","SalesLT Customer","SalesLT ProductCategory","SalesLT ProductModelProductDescription","RangeStart","RangeEnd","MyFunction"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["WebModelingEdit","TMDLView_Desktop"]
+
+ref table 'SalesLT Product'
+ref table 'SalesLT SalesOrderHeader'
+ref table 'SalesLT ProductModel'
+ref table 'SalesLT Address.test.1'
+ref table 'SalesLT Customer'
+ref table 'SalesLT ProductCategory'
+ref table 'SalesLT ProductModelProductDescription'
+ref table 'SalesLT SalesOrderDetail'
+ref table DateTableTemplate_08096599-2548-46e3-9beb-98dd551a4c45
+ref table LocalDateTable_d9b6afb5-5354-4e0a-84f0-b3a69d1b0405
+ref table LocalDateTable_37eea091-734a-4602-abad-edb5fe24ace4
+ref table LocalDateTable_c926a6da-7343-4caf-bf1b-b3d2406294d2
+ref table LocalDateTable_e7d75242-674a-458b-b31e-096a04f90581
+ref table LocalDateTable_9f0ef0f3-69a2-4f2f-b6ac-fbb95f9d5c49
+ref table LocalDateTable_48c47878-3068-4f6b-a7a8-23c63fc25dce
+ref table LocalDateTable_7cd44dc4-d100-4439-a68b-c3e6d0df5d93
+ref table LocalDateTable_21d853b9-7340-4455-bc53-2729c28081f1
+ref table LocalDateTable_87b72db9-f4e4-44ed-bb81-2ecca8c19740
+ref table LocalDateTable_6ec3b63e-6632-4989-a7ec-457b4a04e395
+ref table LocalDateTable_717fca5e-153a-4af4-83d1-31a5b913f67b
+ref table LocalDateTable_7c607090-b441-411c-b5e8-855943315567
+ref table LocalDateTable_5bd8c56d-56c7-439c-93a1-56ea8fdb8370
+ref table LocalDateTable_c860a3a8-e789-4a1e-b1e8-715df702d2d1
+
+ref cultureInfo en-US
+

@@ -1,0 +1,234 @@
+table 'SalesLT SalesOrderHeader'
+	lineageTag: b7992415-0e2f-4c8c-8c8c-b0c4325d54cb
+
+	column SalesOrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 06eca3a3-1ba8-4910-a819-45c28a7fe60b
+		summarizeBy: none
+		sourceColumn: SalesOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevisionNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a0012b2-8a8f-4bb9-9168-5fd08b6e11fd
+		summarizeBy: sum
+		sourceColumn: RevisionNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 99fa1122-b539-4c97-a567-b55c2c4b18b1
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		variation Variation
+			isDefault
+			relationship: d607c59e-68be-4f83-b893-e05543900784
+			defaultHierarchy: LocalDateTable_9f0ef0f3-69a2-4f2f-b6ac-fbb95f9d5c49.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 09e12041-6907-4d56-bacf-8e9fa27f4f0d
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		variation Variation
+			isDefault
+			relationship: 763d1af5-70d0-4852-9168-840b69c081ae
+			defaultHierarchy: LocalDateTable_48c47878-3068-4f6b-a7a8-23c63fc25dce.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6eadb4f0-5247-4ed0-8f77-ccddf48781be
+		summarizeBy: none
+		sourceColumn: ShipDate
+
+		variation Variation
+			isDefault
+			relationship: 27fb2b6d-4fc7-488a-b4ff-0954c04a5ea8
+			defaultHierarchy: LocalDateTable_7cd44dc4-d100-4439-a68b-c3e6d0df5d93.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: int64
+		formatString: 0
+		lineageTag: 09572fb1-e943-4a2c-81d8-ebfe6ad622e9
+		summarizeBy: sum
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnlineOrderFlag
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 22702db5-b540-4f37-b9ac-ea16b696ee47
+		summarizeBy: none
+		sourceColumn: OnlineOrderFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderNumber
+		dataType: string
+		lineageTag: bc6d7060-2404-4ddb-812d-6c7d9c27dce4
+		summarizeBy: none
+		sourceColumn: SalesOrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchaseOrderNumber
+		dataType: string
+		lineageTag: 9e7dc5e6-1402-499c-bee7-321239aeab5e
+		summarizeBy: none
+		sourceColumn: PurchaseOrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountNumber
+		dataType: string
+		lineageTag: 15785a05-cde3-4824-a744-0c6332150f85
+		summarizeBy: none
+		sourceColumn: AccountNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a6c4e32-0f81-456e-a8c4-502f93e5d1a1
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipToAddressID
+		dataType: int64
+		formatString: 0
+		lineageTag: 116101ee-ce91-4525-9dfd-06aa6b54bbb4
+		summarizeBy: count
+		sourceColumn: ShipToAddressID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillToAddressID
+		dataType: int64
+		formatString: 0
+		lineageTag: a9c1272d-bede-4114-ac4f-e854d357a3b1
+		summarizeBy: none
+		sourceColumn: BillToAddressID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipMethod
+		dataType: string
+		lineageTag: 14bd91dc-47d1-42c4-8aba-c146b55e9d13
+		summarizeBy: none
+		sourceColumn: ShipMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditCardApprovalCode
+		dataType: string
+		lineageTag: 95bc5873-942c-44a2-973a-e50393723ffb
+		summarizeBy: none
+		sourceColumn: CreditCardApprovalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubTotal
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 28c77a1a-324e-4956-b667-7b86bdd676a5
+		summarizeBy: sum
+		sourceColumn: SubTotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column TaxAmt
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: af235647-d159-43b5-8f48-55d6eadb152f
+		summarizeBy: sum
+		sourceColumn: TaxAmt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Freight
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c44939df-37f1-4a8f-9bd5-0cd2d5862854
+		summarizeBy: sum
+		sourceColumn: Freight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column TotalDue
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c9e9ca77-f82a-49f9-8717-8bf4fb7bc150
+		summarizeBy: sum
+		sourceColumn: TotalDue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Comment
+		dataType: string
+		lineageTag: 18e1a8de-1229-45e1-8b0a-a2958083b58f
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 97acb4ad-3a09-4a75-86ba-8c407b43294c
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 84fc7b46-149d-422a-a252-7d04683a45e2
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 9a6499bb-7891-42da-907e-4be4ffadea2b
+			defaultHierarchy: LocalDateTable_21d853b9-7340-4455-bc53-2729c28081f1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT SalesOrderHeader' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("modelingsql.database.windows.net"),
+				    AdventureWorksLT = Source{[Name="AdventureWorksLT"]}[Data],
+				    SalesLT_SalesOrderHeader = AdventureWorksLT{[Schema="SalesLT",Item="SalesOrderHeader"]}[Data]
+				in
+				    SalesLT_SalesOrderHeader
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,102 @@
+table 'SalesLT SalesOrderDetail'
+	lineageTag: 1364e9b8-459f-4c67-b389-f76aa4c2ae66
+
+	column SalesOrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: b64091e5-e38c-4bd5-af53-5652c40fc01d
+		summarizeBy: none
+		sourceColumn: SalesOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderDetailID
+		dataType: int64
+		formatString: 0
+		lineageTag: c6bd6218-638f-411d-a8da-329ec9fbaf07
+		summarizeBy: count
+		sourceColumn: SalesOrderDetailID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 64e13cf9-edb4-41a7-b913-b9c13ce0e7d7
+		summarizeBy: sum
+		sourceColumn: OrderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fa32d37-420f-4d62-943b-b901ae28155d
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: b1ac39f3-61cc-4bdb-b3a5-5244ad38ccab
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column UnitPriceDiscount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1452d998-6660-4830-b487-8456c2047649
+		summarizeBy: sum
+		sourceColumn: UnitPriceDiscount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column rowguid
+		dataType: string
+		lineageTag: 88901ba9-75ba-40b0-8f34-a1eac06f2cfc
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4139d7a5-d3d9-4c22-b953-93feedf1b696
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 70ee4373-14f4-450d-9320-6c6fd1de32b0
+			defaultHierarchy: LocalDateTable_c860a3a8-e789-4a1e-b1e8-715df702d2d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT SalesOrderDetail' = m
+		mode: import
+		queryGroup: MyFunction
+		source =
+				let
+				    Source = Sql.Databases("modelingsql.database.windows.net"),
+				    AdventureWorksLT = Source{[Name="AdventureWorksLT"]}[Data],
+				    SalesLT_SalesOrderDetail = AdventureWorksLT{[Schema="SalesLT",Item="SalesOrderDetail"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(SalesLT_SalesOrderDetail,{"LineTotal"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each [ModifiedDate] > RangeStart and [ModifiedDate] <= RangeEnd)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_IsMQueryFoldable = True
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

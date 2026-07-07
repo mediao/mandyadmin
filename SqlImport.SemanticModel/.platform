@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SqlImport"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1519d658-eb22-8e2e-4dab-b90e6a53fc2f"
+  }
+}
