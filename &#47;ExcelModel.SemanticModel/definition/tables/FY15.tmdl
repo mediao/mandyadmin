@@ -1,0 +1,140 @@
+table FY15
+	lineageTag: f94b730c-e6af-43b3-94b7-945facd1b74f
+
+	column Column1
+		dataType: string
+		lineageTag: 86fb0798-0ec8-4a24-8355-f2b21569862a
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column2
+		dataType: string
+		lineageTag: 2a75aa4b-6996-4ad2-8757-62e0a7caaf9a
+		summarizeBy: none
+		sourceColumn: Column2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column3
+		dataType: string
+		lineageTag: efacaa6c-1c8f-477c-87df-9a169bbfe48b
+		summarizeBy: none
+		sourceColumn: Column3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column4
+		dataType: string
+		lineageTag: 7a3a8147-f30d-4943-b99f-1269453507dd
+		summarizeBy: none
+		sourceColumn: Column4
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column5
+		dataType: string
+		lineageTag: fe7078b7-5e4b-472e-94e2-7e452cb59ad1
+		summarizeBy: none
+		sourceColumn: Column5
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column6
+		dataType: string
+		lineageTag: 35c02641-cac9-40b1-8b7d-45371c71bdbe
+		summarizeBy: none
+		sourceColumn: Column6
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column7
+		dataType: string
+		lineageTag: 586b3261-7620-42b3-83c5-428cdaa1e9d4
+		summarizeBy: none
+		sourceColumn: Column7
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column8
+		dataType: string
+		lineageTag: e5c7f0ac-7c95-4605-8dbd-e461010f8a52
+		summarizeBy: none
+		sourceColumn: Column8
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column9
+		dataType: string
+		lineageTag: acb48e70-b353-42cc-b42a-31d96f18ef79
+		summarizeBy: none
+		sourceColumn: Column9
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column10
+		dataType: string
+		lineageTag: 39b1ed97-28dc-45f4-9f51-8c5f7a9f2fe4
+		summarizeBy: none
+		sourceColumn: Column10
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column11
+		dataType: string
+		lineageTag: 1694ef7c-27e6-4f13-a7dc-18491aa41f52
+		summarizeBy: none
+		sourceColumn: Column11
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column12
+		dataType: string
+		lineageTag: 33e84a58-a1ee-43a3-bf48-ea27ce21148c
+		summarizeBy: none
+		sourceColumn: Column12
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column13
+		dataType: string
+		lineageTag: f40cc39b-4aa8-4f30-aa83-811c01333e3c
+		summarizeBy: none
+		sourceColumn: Column13
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column14
+		dataType: string
+		lineageTag: 383a7422-a6a6-4f55-aacb-f297c62638d5
+		summarizeBy: none
+		sourceColumn: Column14
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column15
+		dataType: string
+		lineageTag: e5a49967-0346-4068-82b8-05cdc6e759a6
+		summarizeBy: none
+		sourceColumn: Column15
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column16
+		dataType: string
+		lineageTag: 7cd93a23-4938-4022-b392-938a120cfc95
+		summarizeBy: none
+		sourceColumn: Column16
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FY15 = m
+		mode: import
+		source =
+				let
+				  Source = Excel.Workbook(Web.Contents("https://microsoft-my.sharepoint.com/personal/mediao_microsoft_com/Documents/Apps/Microsoft Power Query/Uploaded Files/2024 MSFT Rewards Data 1.xlsx"), null, true),
+				  #"Navigation 1" = Source{[Item = "FY15", Kind = "Sheet"]}[Data]
+				in
+				  #"Navigation 1"
+
